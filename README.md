@@ -14,7 +14,10 @@ And a sequence of commands like this :
 ->/front/user/filler text from frontend to user`
 
 will yield something like: 
-![image](https://github.com/user-attachments/assets/d7a9b6b5-ac38-4a12-9809-6a112eff366d)
+![image](https://github.com/user-attachments/assets/23b857b7-4efc-4350-84cb-8f0415ad3695)
+
+Guide to createing setup config:
+//TODO
 
 Guide to creating arrows:
 first part should be what kind of an arrow it should be 
