@@ -43,9 +43,7 @@ def createObjects(type,offsetX,value,id):
 def createTextBox(endpoint,method,posX,posY,id):
     mxCellTemp = ET.SubElement(root,"mxCell",id=id,value="endpoint:"+endpoint+"<div>method:"+method+"</div>", style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;", vertex="1" ,parent="1")  
     ET.SubElement(mxCellTemp,"mxGeometry", attrib=myAttrib,x=posX, y=posY, width="140", height="40")
-        # <mxCell id="5" value="Endpoint: api/endpoint&lt;div&gt;Method: Method()&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-        #   <mxGeometry x="360" y="298" width="140" height="40" as="geometry" />
-        # </mxCell>
+
 def createBlockElements(type,offsetX,value,id):
     if(type == "title"):
       mxCellTemp = ET.SubElement(root,"mxCell",id=id ,value="<span style='font-family: Delivery-Bold, sans-serif; text-align: left; background-color: rgb(255, 255, 255);'><font style='font-size: 14px;'>"+value+"</font></span>", style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1", vertex="1" ,parent="1")
@@ -93,9 +91,9 @@ def createArrows(objData,id):
     createDispatchArrow(sourceX ,targetX,objArr[3],id)
     if(len(objArr)>4):
       if(int(alldata[s]["id"])>int(alldata[t]["id"])):
-         posX = str((float(sourceX) + ((float(targetX) - float(sourceX))*0.75)))
+         posX = str((float(sourceX) + ((float(targetX) - float(sourceX))/2) -70))
       else:
-         posX = str((float(targetX) + ((float(sourceX) - float(targetX))*0.75)))
+         posX = str((float(targetX) + ((float(sourceX) - float(targetX))/2)-70))
       posY = str(20 + (int(id)-8)*arrowOffsetY)
       print(posX)
       print(posY)
@@ -103,7 +101,7 @@ def createArrows(objData,id):
   elif(objArr[0] == "<-"):
     createReturnArrow(sourceX,targetX,objArr[3],id)
     if(len(objArr)>4):
-      posX = str((float(sourceX) + ((float(targetX) - float(sourceX))*0.75)))
+      posX = str((float(sourceX) + ((float(targetX) - float(sourceX))/2) - 70))
       posY = str(20 + (int(id)-8)*arrowOffsetY)
       createTextBox(objArr[4],objArr[5],posX,posY,str(random.randint(100, 200)))
  
