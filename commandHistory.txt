@@ -1,0 +1,38 @@
+Rules Translation:'->/user/front/filler text from user to frontend,->/front/back/filler text from frontend to backend/hello/hello,->/back/ai/filler text from backend to ai,<-/ai/back/filler text from ai to backend/someendpoint/somemethod,<-/back/front/filler text from backend to frontend,->/front/back/filler text from frontend to backend,<-/back/front/filler text from backend to frontend,->/front/user/filler text from frontend to user'
+Rules Translation:'->/user/front/filler text from user to frontend/someEndpoint/someMethod,->/front/back/filler text from frontend to backend/hello/hello,->/back/ai/filler text from backend to ai,<-/ai/back/filler text from ai to backend/someendpoint/somemethod,<-/back/front/filler text from backend to frontend,->/front/back/filler text from frontend to backend,<-/back/front/filler text from backend to frontend,->/front/user/filler text from frontend to user'
+Rules Translation:'->:user:front:checking if the user is a admin:na:getUserRole(),->:front:back:sending user data:getuserrole:GetUserRole(),->:back:db:fetching data from database:na:na,<-:back:front:returns is admin or not:na:na,<-:front:user:shows the dashboard page if admin or not:na:na'
+Viewing Dashboard:'->:user:front:checking if the user is a admin:na:getUserRole(),->:front:back:sending user data:getuserrole:GetUserRole(),->:back:db:fetching data from database:na:na,<-:back:front:returns is admin or not:na:na,->:front:user:shows the dashboard page if admin or not:na:na,->:front:back:fetching monthly data:mapdata/monthlycounts:getMonthlyData,->:back:db:geting data from database:na:GetMapCountByMonth(),<-:back:front:sends monthly data:na:na,->:front:back:getting region counts:mapdata/regioncounts:getRegionCounts(),->:back:db:geting data from database:na:GetRegionMapCount(),<-:back:front:sends region counts:na:na,->:front:user:displays all the data in graphs:na:na'
+Fetching industry standard messages:'->:user:front:loads the industry-standard message metadata:na:na,->:front:back:get call to fetch data:getstandardmessagetypes:getIndustryStandardMessages():na,->:back:db:get the message data from db:na:GetAllStandardMessageType(),<-:back:front:returns the industry-standard metadata:na:na,->:user:front:get a specific industry-standard file:na:na,->:front:back:get call to fetch the file schema:getstandardmessageschema:getIndustryMessageDetail(),->:back:db:fetch the file data from database:na:GetStandardMessageSchemaById(),<-:back:front:returning the message schema:na:na,->:front:user:rendering and displaying the industry standard messages:na:na'
+
+Open Map Revised :
+->:user:front:Open a map:na:na,
+->:front:back:get details of the map:open/map:getMap(),
+->:front:back:get input file:open/input:getInput(),
+->:front:back:get output files:open/output:getOutput(),
+->:back:db:fetch metadata for the map:na:GetMetData(),
+<-:db:back:Retuens Metadata if exists:na:na,
+->:back:lb:(if no metadata in db)/nfetch metadata from LBP:na:GetMetaDataLinkBluePrint(),
+<-:lb:back:returns the metadata:na:na,
+->:back:db:fetching map details:open/map:GetSavedMappingFile(),
+->:back:db:fetching input details:open/input:GetMapInput,
+->:back:db:fetching output details:open/output:GetMapOutput,
+<-:back:front:conjugates the metadata and returns map details:open/map:na,
+<-:back:front:returns input files data:open/input:na,
+<-:back:front:returns output files data:open/output:na
+
+
+
+
+Fetching industry standard messages:'->:user:front:clicks on rollback button for a specific version:,->:front:back:sends data for what version needs to be rolled back:rollbacktopreviousversionfile:rollbackVersion(),->:back:db:fetches the data of the map version to be rolled back and makes a new map version from that data:na:RollbackToPreviousVersionFile,<-:back:front:sends response that the new version has been created:na:na,->:front:users:redirects the user to the latest version where the rollback has been performed'
+
+Fetching industry standard messages:'->:user:front:clicks on rollback button for a specific version:na:na,->:front:back:sends data for what version needs to be rolled back:rollbacktopreviousversionfile:rollbackVersion(),->:back:db:fetches the data of the map version to be rolled back and makes a new map version from that data:na:RollbackToPreviousVersionFile,<-:back:front:sends response that the new version has been created:na:na,->:front:users:redirects the user to the latest version where the rollback has been performed:na:na'
+
+Rollback Mechanism:'->:user:front:clicks on rollback button for a specific version:na:na,->:front:back:sends data for what version needs to be rolled back:rollbacktopreviousversionfile:rollbackVersion(),->:back:db:fetches the data of the map version to be rolled back and makes a new map version from that data:na:RollbackToPreviousVersionFile,<-:back:front:sends response that the new version has been created:na:na,->:front:user:redirects the user to the latest version where the rollback has been performed:na:na'
+
+Fetching industry standard messages:'->:user:front:user makes some changes:na:na,->:front:back:if there is some change in the map sends the data (checks every 5 mins):/savemappingwithversioning:autoSaveMap,->:back:db:saves the data in the curernt verion(does not create a new version):na:SaveMappingWithVersioning(),<-:back:front:responds with 200:/savemappingwithversioning:na,->:front:back:sends the raw input and output files:upload/input-output:_postFormData(),->:back:db:saves the raw data in the blob:na:UploadIOFile,<-:back:front:responds with 200 status code:na:na'
+
+Auto Save:'->:user:front:user makes some changes:na:na,->:front:back:if there is some change in the map sends the data (checks every 5 mins):/savemappingwithversioning:autoSaveMap,->:back:db:saves the data in the curernt verion(does not create a new version):na:SaveMappingWithVersioning(),<-:back:front:responds with 200:/savemappingwithversioning:na,->:front:back:sends the raw input and output files:upload/input-output:_postFormData(),->:back:db:saves the raw data in the blob:na:UploadIOFile,<-:back:front:responds with 200 status code:na:na'
+
+Auto Save:'->:user:front:uploads the custom industry-standard/DSC message and gives the required details:na:na,->:front:back:sends the data to backend:upload/customfile:postCustomStandardMessage,->:back:db:saves the data in the blob as industrystandard/DSC message:na:UploadCustomFile(),<-:back:front:responds with 200 status that the file has been saved:na:na,<-:front:user:user will be able to search for the recently uploaded file in the industry standard list:na:na'
+
+Post Custom Standard Message:'->:user:front:uploads the custom industry-standard/DSC message and gives the required details:na:na,->:front:back:sends the data to backend:upload/customfile:postCustomStandardMessage,->:back:db:saves the data in the blob as industrystandard/DSC message:na:UploadCustomFile(),<-:back:front:responds with 200 status that the file has been saved:na:na,<-:front:user:user will be able to search for the recently uploaded file in the industry standard list:na:na'

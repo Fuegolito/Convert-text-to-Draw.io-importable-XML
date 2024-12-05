@@ -29,3 +29,5 @@ therefore, `->/user/front` means to draw a dispatch arrow from user to frontend
 
 This is then followed by the label of the arrow:
 therefore, `->/user/front/filler text from user to frontend` means to draw a dispatch arrow from user to frontend with the label 'filler text from user to frontend'
+
+This is further followed by a messaging sequence that for now has allows 2 messages to be diplayed with each arrow 
